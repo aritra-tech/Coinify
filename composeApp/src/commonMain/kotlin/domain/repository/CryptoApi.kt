@@ -1,6 +1,6 @@
-package data.repository
+package domain.repository
 
-import data.model.Listings
+import domain.model.Listings
 
 interface CryptoApi {
     suspend fun getListing(): Listings

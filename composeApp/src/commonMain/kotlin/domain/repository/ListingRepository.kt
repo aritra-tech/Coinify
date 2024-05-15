@@ -1,6 +1,6 @@
-package data.repository
+package domain.repository
 
-import data.model.Listings
+import domain.model.Listings
 import data.remote.ApiClient
 
 class ListingRepository: CryptoApi {
