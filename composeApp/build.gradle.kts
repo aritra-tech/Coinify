@@ -35,6 +35,8 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.annotation)
             implementation(libs.ktor.client.android)
         }
         commonMain.dependencies {
@@ -61,6 +63,12 @@ kotlin {
             implementation(libs.ktor.json)
             implementation(libs.ktor.logging)
             implementation(libs.ktor.negotiation)
+
+            //Koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.annotation)
 
         }
         desktopMain.dependencies {
