@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import presentation.DetailsScreen
-import presentation.HomeScreen
+import presentation.home.HomeScreen
 
 val LocalNavHost = staticCompositionLocalOf<NavHostController> {
     error("No Parameter is available")
