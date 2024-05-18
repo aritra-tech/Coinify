@@ -21,6 +21,6 @@ data class Data(
     @SerialName("platform") var platform: String? = null,
     @SerialName("self_reported_circulating_supply") var selfReportedCirculatingSupply: String? = null,
     @SerialName("self_reported_market_cap") var selfReportedMarketCap: String? = null,
-    @SerialName("quote") var quote: Quote? = Quote()
+    @SerialName("quote") var quote: Quote = Quote()
 
 )
