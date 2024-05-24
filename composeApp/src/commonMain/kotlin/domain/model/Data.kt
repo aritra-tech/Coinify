@@ -5,22 +5,21 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Data(
-    @SerialName("id") var id: Int? = null,
-    @SerialName("name") var name: String? = null,
-    @SerialName("symbol") var symbol: String? = null,
-    @SerialName("slug") var slug: String? = null,
-    @SerialName("cmc_rank") var cmcRank: Int? = null,
-    @SerialName("num_market_pairs") var numMarketPairs: Int? = null,
-    @SerialName("circulating_supply") var circulatingSupply: Int? = null,
-    @SerialName("total_supply") var totalSupply: Int? = null,
-    @SerialName("max_supply") var maxSupply: Int? = null,
-    @SerialName("infinite_supply") var infiniteSupply: Boolean? = null,
-    @SerialName("last_updated") var lastUpdated: String? = null,
-    @SerialName("date_added") var dateAdded: String? = null,
-    @SerialName("tags") var tags: List<String> = listOf(),
-    @SerialName("platform") var platform: String? = null,
-    @SerialName("self_reported_circulating_supply") var selfReportedCirculatingSupply: String? = null,
-    @SerialName("self_reported_market_cap") var selfReportedMarketCap: String? = null,
-    @SerialName("quote") var quote: Quote = Quote()
-
+    @SerialName("id") val id: Int? = null,
+    @SerialName("name") val name: String? = null,
+    @SerialName("symbol") val symbol: String? = null,
+    @SerialName("slug") val slug: String? = null,
+    @SerialName("cmc_rank") val cmcRank: Double? = null,
+    @SerialName("num_market_pairs") val numMarketPairs: Int? = null,
+    @SerialName("circulating_supply") val circulatingSupply: Double? = null,
+    @SerialName("total_supply") val totalSupply: Double? = null,
+    @SerialName("max_supply") val maxSupply: Double? = null,
+    @SerialName("infinite_supply") val infiniteSupply: Boolean? = null,
+    @SerialName("last_updated") val lastUpdated: String? = null,
+    @SerialName("date_added") val dateAdded: String? = null,
+    @SerialName("tags") val tags: List<String> = listOf(),
+    @SerialName("platform") val platform: Platform? = null,
+    @SerialName("self_reported_circulating_supply") val selfReportedCirculatingSupply: Double? = null,
+    @SerialName("self_reported_market_cap") val selfReportedMarketCap: Double? = null,
+    @SerialName("quote") val quote: Quote = Quote()
 )
