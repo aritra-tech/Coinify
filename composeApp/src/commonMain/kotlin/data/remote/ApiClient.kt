@@ -22,8 +22,11 @@ object ApiClient {
         install(ContentNegotiation) {
             json(
                 json = Json {
-                    isLenient = true
+                    prettyPrint = true
+                    isLenient = false
                     ignoreUnknownKeys = true
+                    coerceInputValues = true
+                    explicitNulls = true
                 }
             )
         }
@@ -42,7 +45,7 @@ object ApiClient {
         }
         defaultRequest {
             headers {
-                append("API_KEY", API_KEY)
+                append("X-CMC_PRO_API_KEY", API_KEY)
             }
         }
     }
