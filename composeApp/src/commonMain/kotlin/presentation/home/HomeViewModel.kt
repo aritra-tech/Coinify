@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import data.remote.Resources
 import domain.model.Listings
 import domain.repository.ListingRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,7 +20,7 @@ class HomeViewModel(
     var latestListing: StateFlow<Resources<Listings>> = _latestListing.asStateFlow()
 
     fun getLatestListing() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _latestListing.value = Resources.LOADING
             try {
                 val response = repository.getListing()
