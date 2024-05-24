@@ -38,6 +38,8 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.annotation)
             implementation(libs.ktor.client.android)
+            implementation (libs.kotlinx.coroutines.android)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -80,6 +82,7 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.okhttp)
+            implementation (libs.kotlinx.coroutines.swing)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
