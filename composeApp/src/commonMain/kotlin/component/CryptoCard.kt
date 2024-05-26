@@ -24,19 +24,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import domain.model.Data
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlin.math.roundToInt
 
 @Composable
 fun CryptoCard(
     data: Data,
-    onClick: (Int) -> Unit
+    onClick: (String) -> Unit
 ) {
 
+    val jsonData = Json.encodeToString(data)
     Column(
         modifier = Modifier.fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer)
-            .clickable { onClick(data.id) }
+            .clickable { onClick(jsonData) }
             .padding(16.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
