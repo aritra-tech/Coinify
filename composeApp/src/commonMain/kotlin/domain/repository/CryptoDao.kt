@@ -2,6 +2,6 @@ package domain.repository
 
 import domain.model.Listings
 
-interface CryptoApi {
+interface CryptoDao {
     suspend fun getListing(): Listings
 }

@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import presentation.DetailsScreen
 import presentation.home.HomeScreen
@@ -22,6 +23,7 @@ val LocalNavHost = staticCompositionLocalOf<NavHostController> {
 fun Navigation() {
 
     val navController: NavHostController = rememberNavController()
+    val backStackEntry = navController.currentBackStackEntryAsState()
 
     CompositionLocalProvider(LocalNavHost provides navController) {
         Scaffold(

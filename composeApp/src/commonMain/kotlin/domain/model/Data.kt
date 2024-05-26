@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Data(
-    @SerialName("id") val id: Int? = null,
+    @SerialName("id") val id: Int,
     @SerialName("name") val name: String? = null,
     @SerialName("symbol") val symbol: String? = null,
     @SerialName("slug") val slug: String? = null,
