@@ -1,6 +1,7 @@
 package presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,10 +18,18 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import component.CoinChart
 import domain.model.Data
 import navigation.LocalNavHost
 import kotlin.math.roundToInt
@@ -40,6 +50,8 @@ fun DetailsScreen(data: Data) {
 
     val navController = LocalNavHost.current
     val capMarketChanged24h = data.quote.USD.percentChange24h ?: 0.0
+    var selectedDuration by remember { mutableStateOf("1h") }
+    val duration = remember { mutableListOf("1h", "1d", "1w") }
     val textColor24h = if (capMarketChanged24h > 0) Color.Green else Color.Red
 
     Scaffold(
@@ -109,6 +121,48 @@ fun DetailsScreen(data: Data) {
                     )
                 )
             }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            TabRow(
+                modifier = Modifier.fillMaxWidth(),
+                selectedTabIndex = duration.indexOf(selectedDuration),
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = Color.Black,
+                indicator = { position ->
+                    TabRowDefaults.Indicator(
+                        modifier = Modifier.tabIndicatorOffset(
+                            position[duration.indexOf(
+                                selectedDuration
+                            )]
+                        )
+                    )
+                }
+            ) {
+                duration.forEachIndexed { _, period ->
+                    Tab(
+                        selected = selectedDuration == period,
+                        onClick = { selectedDuration = period },
+                        text = { Text(text = period) }
+                    )
+                }
+            }
+
+            Column(
+                modifier = Modifier.width(341.dp).height(214.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                when(selectedDuration) {
+                    "1h" -> { CoinChart(data, "1h") }
+
+                    "1d" -> { CoinChart(data, "1d") }
+
+                    "1w" -> { CoinChart(data, "1w") }
+                }
+            }
         }
     }
 }
+
+
