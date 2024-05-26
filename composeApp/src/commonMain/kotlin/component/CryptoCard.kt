@@ -27,13 +27,16 @@ import domain.model.Data
 import kotlin.math.roundToInt
 
 @Composable
-fun CryptoCard(data: Data) {
+fun CryptoCard(
+    data: Data,
+    onClick: (Int) -> Unit
+) {
 
     Column(
         modifier = Modifier.fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer)
-            .clickable {  }
+            .clickable { onClick(data.id) }
             .padding(16.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
