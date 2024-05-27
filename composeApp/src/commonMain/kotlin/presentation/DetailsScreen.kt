@@ -148,8 +148,10 @@ fun DetailsScreen(data: Data) {
                 }
             }
 
+            Spacer(modifier = Modifier.height(20.dp))
+
             Column(
-                modifier = Modifier.width(341.dp).height(214.dp),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {

@@ -15,9 +15,9 @@ kotlin {
             }
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -28,17 +28,17 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.annotation)
             implementation(libs.ktor.client.android)
-            implementation (libs.kotlinx.coroutines.android)
+            implementation(libs.kotlinx.coroutines.android)
 
         }
         commonMain.dependencies {
@@ -56,6 +56,8 @@ kotlin {
             implementation(libs.androidx.data.store.core)
             implementation(libs.kotlin.coroutines)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.chart)
+
 
             // Kermit
             implementation(libs.kermit)
@@ -82,7 +84,7 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.okhttp)
-            implementation (libs.kotlinx.coroutines.swing)
+            implementation(libs.kotlinx.coroutines.swing)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
