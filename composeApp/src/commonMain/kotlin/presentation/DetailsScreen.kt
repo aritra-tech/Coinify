@@ -16,6 +16,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
@@ -42,6 +43,7 @@ import coil3.compose.AsyncImage
 import component.CoinChart
 import domain.model.Data
 import navigation.LocalNavHost
+import utils.formatData
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,9 +51,9 @@ import kotlin.math.roundToInt
 fun DetailsScreen(data: Data) {
 
     val navController = LocalNavHost.current
-    val capMarketChanged24h = data.quote.USD.percentChange24h ?: 0.0
+    val capMarketChanged24h = data.quote.USD.percentChange24h
     var selectedDuration by remember { mutableStateOf("1h") }
-    val duration = remember { mutableListOf("1h", "1d", "1w") }
+    val duration = remember { mutableListOf("1h", "1d", "1w", "1m", "2m", "3m") }
     val textColor24h = if (capMarketChanged24h > 0) Color.Green else Color.Red
 
     Scaffold(
@@ -161,7 +163,184 @@ fun DetailsScreen(data: Data) {
                     "1d" -> { CoinChart(data, "1d") }
 
                     "1w" -> { CoinChart(data, "1w") }
+
+                    "1m" -> { CoinChart(data, "1m") }
+
+                    "2m" -> { CoinChart(data, "2m") }
+
+                    "3m" -> { CoinChart(data, "3m") }
                 }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "Statics",
+                style = TextStyle(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Text(
+                    text = "Current Price",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Light
+                    )
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = "$" + "${((data.quote.USD.price?.times(100))?.roundToInt())?.div(100.0)}",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
+            }
+
+            HorizontalDivider(
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.surfaceDim
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Text(
+                    text = "Market Cap",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Light
+                    )
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = data.quote.USD.marketCap?.let { formatData(it) }.toString(),
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
+            }
+
+            HorizontalDivider(
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.surfaceDim
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Text(
+                    text = "Volume 24h",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Light
+                    )
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = data.quote.USD.volumeChange24h?.let { formatData(it) }.toString(),
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
+            }
+
+            HorizontalDivider(
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.surfaceDim
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Text(
+                    text = "Max Supply",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Light
+                    )
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = data.maxSupply.toString(),
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
+            }
+
+            HorizontalDivider(
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.surfaceDim
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Text(
+                    text = "Total Supply",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Light
+                    )
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = data.totalSupply.toString(),
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
             }
         }
     }

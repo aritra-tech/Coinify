@@ -12,6 +12,7 @@ androidx-navigation = "2.8.0-alpha02"
 androidx-espresso-core = "3.5.1"
 androidx-material = "1.11.0"
 androidx-data-store = "1.1.1"
+bignum = "0.3.9"
 chart = "Beta-0.0.5"
 coroutines = "1.8.0"
 kotlinx-serialization = "1.6.3"
@@ -29,6 +30,7 @@ koin-annotation = "1.3.1"
 coil3 = "3.0.0-alpha06"
 
 [libraries]
+bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
 chart = { module = "io.github.thechance101:chart", version.ref = "chart" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }

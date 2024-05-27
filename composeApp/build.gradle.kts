@@ -57,6 +57,7 @@ kotlin {
             implementation(libs.kotlin.coroutines)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.chart)
+            implementation(libs.bignum)
 
 
             // Kermit

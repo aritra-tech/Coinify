@@ -30,32 +30,71 @@ fun CoinChart(data: Data, selectedDuration: String) {
             data.quote.USD.percentChange1h,
             data.quote.USD.percentChange24h,
             data.quote.USD.percentChange7d,
+            data.quote.USD.percentChange30d,
+            data.quote.USD.percentChange60d,
+            data.quote.USD.percentChange90d,
         )
 
         "1d" -> listOf(
             Random.nextDouble(0.0,7.0),
             data.quote.USD.percentChange24h,
             data.quote.USD.percentChange7d,
+            data.quote.USD.percentChange30d,
+            data.quote.USD.percentChange60d,
+            data.quote.USD.percentChange90d,
         )
 
         "1w" -> listOf(
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
             data.quote.USD.percentChange7d,
+            data.quote.USD.percentChange30d,
+            data.quote.USD.percentChange60d,
+            data.quote.USD.percentChange90d,
+        )
+
+        "1m" -> listOf(
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            data.quote.USD.percentChange30d,
+            data.quote.USD.percentChange60d,
+            data.quote.USD.percentChange90d,
+        )
+
+        "2m" -> listOf(
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            data.quote.USD.percentChange60d,
+            data.quote.USD.percentChange90d,
+        )
+
+        "3m" -> listOf(
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            Random.nextDouble(0.0,7.0),
+            data.quote.USD.percentChange90d,
         )
 
         else -> emptyList()
     }
 
     val durationList = mutableListOf<Double>()
-    data.quote.USD.percentChange1h.let { durationList.add(it) }
-    data.quote.USD.percentChange24h.let { durationList.add(it) }
-    data.quote.USD.percentChange7d.let { durationList.add(it) }
+    durationList.add(data.quote.USD.percentChange1h)
+    durationList.add(data.quote.USD.percentChange24h)
+    durationList.add(data.quote.USD.percentChange7d)
+    durationList.add(data.quote.USD.percentChange30d)
+    durationList.add(data.quote.USD.percentChange60d)
+    durationList.add(data.quote.USD.percentChange90d)
     val listOfData = durationMappingData.map { abs(it) }
 
     val testLineParameters: List<LineParameters> = listOf(
         LineParameters(
-            label = "",
+            label = "Price",
             data = listOfData,
             lineColor = Color.Blue,
             lineType = LineType.CURVED_LINE,
@@ -69,28 +108,28 @@ fun CoinChart(data: Data, selectedDuration: String) {
         verticalArrangement = Arrangement.Center
     ) {
         LineChart(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .height(240.dp),
             linesParameters = testLineParameters,
             isGrid = false,
             gridColor = Color.LightGray,
             animateChart = true,
-            showGridWithSpacer = true,
+            showGridWithSpacer = false,
             legendPosition = LegendPosition.TOP,
             xAxisData = listOf(
+                "2019",
+                "2020",
+                "2021",
                 "2022",
                 "2023",
                 "2024"
-            ),
-            yAxisStyle = TextStyle(
-                fontSize = 14.sp,
-                color = Color.Gray,
             ),
             xAxisStyle = TextStyle(
                 fontSize = 14.sp,
                 color = Color.Gray,
                 fontWeight = FontWeight.W400
             ),
-            yAxisRange = 3,
+            yAxisRange = 6,
             oneLineChart = false,
             gridOrientation = GridOrientation.VERTICAL
         )
