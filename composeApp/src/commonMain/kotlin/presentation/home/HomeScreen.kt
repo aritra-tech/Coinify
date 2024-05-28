@@ -78,7 +78,7 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = { "Coinify" },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 actions = {
                     IconButton(onClick = {}) {
                         Icon(Icons.Default.Notifications, contentDescription = "Notification")

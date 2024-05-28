@@ -13,7 +13,7 @@ data class Data(
     @SerialName("num_market_pairs") val numMarketPairs: Int? = null,
     @SerialName("circulating_supply") val circulatingSupply: Double? = null,
     @SerialName("total_supply") val totalSupply: Double? = null,
-    @SerialName("max_supply") val maxSupply: Double? = null,
+    @SerialName("max_supply") val maxSupply: Double = 0.0,
     @SerialName("infinite_supply") val infiniteSupply: Boolean? = null,
     @SerialName("last_updated") val lastUpdated: String? = null,
     @SerialName("date_added") val dateAdded: String? = null,

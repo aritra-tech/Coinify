@@ -52,20 +52,20 @@ fun DetailsScreen(data: Data) {
 
     val navController = LocalNavHost.current
     val capMarketChanged24h = data.quote.USD.percentChange24h
-    var selectedDuration by remember { mutableStateOf("1h") }
-    val duration = remember { mutableListOf("1h", "1d", "1w", "1m", "2m", "3m") }
+    var selectedDuration by remember { mutableStateOf("1HR") }
+    val duration = remember { mutableListOf("1HR", "1D", "1W", "1M", "2M", "3M") }
     val textColor24h = if (capMarketChanged24h > 0) Color.Green else Color.Red
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { "Trade ${data.name}" },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back button")
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
             )
         }
     ) { paddingValues ->
@@ -115,7 +115,7 @@ fun DetailsScreen(data: Data) {
                 Spacer(modifier = Modifier.weight(1f))
 
                 Text(
-                    text = "${capMarketChanged24h}%",
+                    text = "${formatData(capMarketChanged24h)}% (1d)",
                     style = TextStyle(
                         color = textColor24h,
                         fontSize = 12.sp,
@@ -158,24 +158,24 @@ fun DetailsScreen(data: Data) {
                 verticalArrangement = Arrangement.Center
             ) {
                 when(selectedDuration) {
-                    "1h" -> { CoinChart(data, "1h") }
+                    "1HR" -> { CoinChart(data, "1HR") }
 
-                    "1d" -> { CoinChart(data, "1d") }
+                    "1D" -> { CoinChart(data, "1D") }
 
-                    "1w" -> { CoinChart(data, "1w") }
+                    "1W" -> { CoinChart(data, "1W") }
 
-                    "1m" -> { CoinChart(data, "1m") }
+                    "1M" -> { CoinChart(data, "1M") }
 
-                    "2m" -> { CoinChart(data, "2m") }
+                    "2M" -> { CoinChart(data, "2M") }
 
-                    "3m" -> { CoinChart(data, "3m") }
+                    "3M" -> { CoinChart(data, "3M") }
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = "Statics",
+                text = "Statistics",
                 style = TextStyle(
                     color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 18.sp,
@@ -195,7 +195,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Light
+                        fontWeight = FontWeight.Normal
                     )
                 )
 
@@ -228,7 +228,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Light
+                        fontWeight = FontWeight.Normal
                     )
                 )
 
@@ -261,7 +261,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Light
+                        fontWeight = FontWeight.Normal
                     )
                 )
 
@@ -294,7 +294,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Light
+                        fontWeight = FontWeight.Normal
                     )
                 )
 
@@ -327,7 +327,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Light
+                        fontWeight = FontWeight.Normal
                     )
                 )
 

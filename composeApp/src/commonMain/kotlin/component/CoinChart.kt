@@ -26,7 +26,7 @@ import kotlin.random.Random
 @Composable
 fun CoinChart(data: Data, selectedDuration: String) {
     val durationMappingData = when(selectedDuration) {
-        "1h" -> listOf(
+        "1HR" -> listOf(
             data.quote.USD.percentChange1h,
             data.quote.USD.percentChange24h,
             data.quote.USD.percentChange7d,
@@ -35,7 +35,7 @@ fun CoinChart(data: Data, selectedDuration: String) {
             data.quote.USD.percentChange90d,
         )
 
-        "1d" -> listOf(
+        "1D" -> listOf(
             Random.nextDouble(0.0,7.0),
             data.quote.USD.percentChange24h,
             data.quote.USD.percentChange7d,
@@ -44,7 +44,7 @@ fun CoinChart(data: Data, selectedDuration: String) {
             data.quote.USD.percentChange90d,
         )
 
-        "1w" -> listOf(
+        "1W" -> listOf(
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
             data.quote.USD.percentChange7d,
@@ -53,7 +53,7 @@ fun CoinChart(data: Data, selectedDuration: String) {
             data.quote.USD.percentChange90d,
         )
 
-        "1m" -> listOf(
+        "1M" -> listOf(
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
@@ -62,7 +62,7 @@ fun CoinChart(data: Data, selectedDuration: String) {
             data.quote.USD.percentChange90d,
         )
 
-        "2m" -> listOf(
+        "2M" -> listOf(
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
@@ -71,7 +71,7 @@ fun CoinChart(data: Data, selectedDuration: String) {
             data.quote.USD.percentChange90d,
         )
 
-        "3m" -> listOf(
+        "3M" -> listOf(
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
             Random.nextDouble(0.0,7.0),
@@ -96,7 +96,7 @@ fun CoinChart(data: Data, selectedDuration: String) {
         LineParameters(
             label = "Price",
             data = listOfData,
-            lineColor = Color.Blue,
+            lineColor = Color.Green,
             lineType = LineType.CURVED_LINE,
             lineShadow = false
         )
