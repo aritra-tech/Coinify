@@ -1,0 +1,9 @@
+<resources>
+    <string name="coinify">Coinify</string>
+    <string name="statistics">Statistics</string>
+    <string name="current_price">Current Price</string>
+    <string name="market_cap">Market Cap</string>
+    <string name="volume_24h">Volume 24h</string>
+    <string name="max_supply">Max Supply</string>
+    <string name="total_supply">Total Supply</string>
+</resources>

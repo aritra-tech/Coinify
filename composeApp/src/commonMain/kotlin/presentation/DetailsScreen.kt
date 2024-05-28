@@ -40,9 +40,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import coinify.composeapp.generated.resources.Res
+import coinify.composeapp.generated.resources.current_price
+import coinify.composeapp.generated.resources.market_cap
+import coinify.composeapp.generated.resources.max_supply
+import coinify.composeapp.generated.resources.statistics
+import coinify.composeapp.generated.resources.total_supply
+import coinify.composeapp.generated.resources.volume_24h
 import component.CoinChart
 import domain.model.Data
 import navigation.LocalNavHost
+import org.jetbrains.compose.resources.stringResource
 import utils.formatData
 import kotlin.math.roundToInt
 
@@ -59,7 +67,7 @@ fun DetailsScreen(data: Data) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { "Trade ${data.name}" },
+                title = { Text(data.name) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
@@ -175,7 +183,7 @@ fun DetailsScreen(data: Data) {
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = "Statistics",
+                text = stringResource(Res.string.statistics),
                 style = TextStyle(
                     color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 18.sp,
@@ -191,7 +199,7 @@ fun DetailsScreen(data: Data) {
             ) {
 
                 Text(
-                    text = "Current Price",
+                    text = stringResource(Res.string.current_price),
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
@@ -224,7 +232,7 @@ fun DetailsScreen(data: Data) {
             ) {
 
                 Text(
-                    text = "Market Cap",
+                    text = stringResource(Res.string.market_cap),
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
@@ -257,7 +265,7 @@ fun DetailsScreen(data: Data) {
             ) {
 
                 Text(
-                    text = "Volume 24h",
+                    text = stringResource(Res.string.volume_24h),
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
@@ -290,7 +298,7 @@ fun DetailsScreen(data: Data) {
             ) {
 
                 Text(
-                    text = "Max Supply",
+                    text = stringResource(Res.string.max_supply),
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
@@ -323,7 +331,7 @@ fun DetailsScreen(data: Data) {
             ) {
 
                 Text(
-                    text = "Total Supply",
+                    text = stringResource(Res.string.total_supply),
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
