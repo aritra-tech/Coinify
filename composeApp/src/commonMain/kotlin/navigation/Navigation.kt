@@ -13,6 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import domain.model.Data
+import kotlinx.serialization.json.Json
 import presentation.DetailsScreen
 import presentation.home.HomeScreen
 
@@ -39,8 +41,12 @@ fun Navigation() {
                     HomeScreen()
                 }
 
-                composable(route = Screens.Details.route) {
-                    DetailsScreen()
+                composable(route = "${Screens.Details.route}/{data}") {backStackEntry ->
+                    val jsonData = backStackEntry.arguments?.getString("data")
+                    val data = jsonData?.let { Json.decodeFromString<Data>(it) }
+                    data?.let {
+                        DetailsScreen(it)
+                    }
                 }
             }
         }
