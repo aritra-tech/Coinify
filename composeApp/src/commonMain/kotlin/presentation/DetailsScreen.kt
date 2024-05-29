@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,12 +45,17 @@ import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.current_price
 import coinify.composeapp.generated.resources.market_cap
 import coinify.composeapp.generated.resources.max_supply
+import coinify.composeapp.generated.resources.poppins_bold
+import coinify.composeapp.generated.resources.poppins_extrabold
+import coinify.composeapp.generated.resources.poppins_medium
+import coinify.composeapp.generated.resources.poppins_regular
 import coinify.composeapp.generated.resources.statistics
 import coinify.composeapp.generated.resources.total_supply
 import coinify.composeapp.generated.resources.volume_24h
 import component.CoinChart
 import domain.model.Data
 import navigation.LocalNavHost
+import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 import utils.formatData
 import kotlin.math.roundToInt
@@ -67,7 +73,11 @@ fun DetailsScreen(data: Data) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(data.name) },
+                title = { Text(
+                    text = data.name,
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily(Font(Res.font.poppins_bold))
+                ) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
@@ -100,7 +110,8 @@ fun DetailsScreen(data: Data) {
                     text = data.symbol ?: "",
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 16.sp
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
                     )
                 )
             }
@@ -116,7 +127,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 24.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontFamily = FontFamily(Font(Res.font.poppins_extrabold))
                     )
                 )
 
@@ -127,7 +138,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = textColor24h,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Medium
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
             }
@@ -180,14 +191,14 @@ fun DetailsScreen(data: Data) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             Text(
                 text = stringResource(Res.string.statistics),
                 style = TextStyle(
                     color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 18.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontFamily = FontFamily(Font(Res.font.poppins_extrabold))
                 )
             )
 
@@ -203,7 +214,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Normal
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
                     )
                 )
 
@@ -214,7 +225,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
             }
@@ -236,7 +247,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Normal
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
                     )
                 )
 
@@ -247,7 +258,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
             }
@@ -269,7 +280,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Normal
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
                     )
                 )
 
@@ -280,7 +291,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
             }
@@ -302,7 +313,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Normal
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
                     )
                 )
 
@@ -313,7 +324,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
             }
@@ -335,7 +346,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Normal
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
                     )
                 )
 
@@ -346,7 +357,7 @@ fun DetailsScreen(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
             }

@@ -31,9 +31,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.coinify
+import coinify.composeapp.generated.resources.poppins_medium
 import component.CryptoCard
 import component.LoadingDialog
 import component.SearchBar
@@ -41,6 +44,7 @@ import data.remote.Resources
 import domain.model.Listings
 import navigation.LocalNavHost
 import navigation.Screens
+import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
@@ -80,7 +84,11 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(Res.string.coinify)) },
+                title = { Text(
+                    text = stringResource(Res.string.coinify),
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily(Font(Res.font.poppins_medium))
+                ) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 actions = {
                     IconButton(onClick = {}) {

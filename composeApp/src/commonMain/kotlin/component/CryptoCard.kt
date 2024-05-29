@@ -1,6 +1,7 @@
 package component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,15 +18,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import coinify.composeapp.generated.resources.Res
+import coinify.composeapp.generated.resources.poppins_medium
+import coinify.composeapp.generated.resources.poppins_regular
 import domain.model.Data
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.jetbrains.compose.resources.Font
 import kotlin.math.roundToInt
 
 @Composable
@@ -38,8 +46,14 @@ fun CryptoCard(
     Column(
         modifier = Modifier.fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
-            .background(MaterialTheme.colorScheme.surfaceContainer)
+            .background(Color.White)
             .clickable { onClick(jsonData) }
+            .border(width = 1.dp, color = Color(0xFFEEEEEE), RoundedCornerShape(10.dp))
+            .shadow(
+                elevation = 4.dp,
+                spotColor = Color(0x0D666666),
+                ambientColor = Color(0x0D666666)
+            )
             .padding(16.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
@@ -68,7 +82,8 @@ fun CryptoCard(
                     overflow = TextOverflow.Ellipsis,
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 22.sp
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
 
@@ -76,7 +91,8 @@ fun CryptoCard(
                     text = data.symbol ?: "",
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 16.sp
+                        fontSize = 12.sp,
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
                     )
                 )
             }
@@ -84,13 +100,14 @@ fun CryptoCard(
             Spacer(modifier = Modifier.weight(1f))
 
 
-                Text(
-                    text = "$ " + "${((data.quote.USD.price?.times(100))?.roundToInt())?.div(100.0)}",
-                    style = TextStyle(
-                        color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 18.sp
-                    )
+            Text(
+                text = "$" + "${((data.quote.USD.price?.times(100))?.roundToInt())?.div(100.0)}",
+                style = TextStyle(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 14.sp,
+                    fontFamily = FontFamily(Font(Res.font.poppins_medium))
                 )
+            )
 
         }
     }
