@@ -42,7 +42,10 @@ fun CryptoCard(
     onClick: (String) -> Unit
 ) {
 
+    val percentChange24h = data.quote.USD.percentChange24h
+    val textColor24h = if (percentChange24h > 0) Color.Green else Color.Red
     val jsonData = Json.encodeToString(data)
+
     Column(
         modifier = Modifier.fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
@@ -99,15 +102,24 @@ fun CryptoCard(
 
             Spacer(modifier = Modifier.weight(1f))
 
-
-            Text(
-                text = "$" + "${((data.quote.USD.price?.times(100))?.roundToInt())?.div(100.0)}",
-                style = TextStyle(
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(Res.font.poppins_medium))
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "$" + "${((data.quote.USD.price?.times(100))?.roundToInt())?.div(100.0)}",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
+                    )
                 )
-            )
+
+                Text(
+                    text = "${percentChange24h.roundToInt()}%",
+                    color = textColor24h
+                )
+            }
 
         }
     }

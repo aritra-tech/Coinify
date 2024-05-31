@@ -4,22 +4,23 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coinify.composeapp.generated.resources.Res
+import coinify.composeapp.generated.resources.poppins_regular
 import com.aay.compose.baseComponents.model.GridOrientation
 import com.aay.compose.baseComponents.model.LegendPosition
 import com.aay.compose.lineChart.LineChart
 import com.aay.compose.lineChart.model.LineParameters
 import com.aay.compose.lineChart.model.LineType
 import domain.model.Data
+import org.jetbrains.compose.resources.Font
 import kotlin.math.abs
 import kotlin.random.Random
 
@@ -109,13 +110,18 @@ fun CoinChart(data: Data, selectedDuration: String) {
     ) {
         LineChart(
             modifier = Modifier.fillMaxWidth()
-                .height(240.dp),
+                .height(270.dp),
             linesParameters = testLineParameters,
             isGrid = false,
             gridColor = Color.LightGray,
             animateChart = true,
             showGridWithSpacer = false,
             legendPosition = LegendPosition.TOP,
+            yAxisStyle = TextStyle(
+                fontSize = 14.sp,
+                color = Color.Gray,
+                fontFamily = FontFamily(Font(Res.font.poppins_regular))
+            ),
             xAxisData = listOf(
                 "2019",
                 "2020",
@@ -127,7 +133,7 @@ fun CoinChart(data: Data, selectedDuration: String) {
             xAxisStyle = TextStyle(
                 fontSize = 14.sp,
                 color = Color.Gray,
-                fontWeight = FontWeight.W400
+                fontFamily = FontFamily(Font(Res.font.poppins_regular))
             ),
             yAxisRange = 6,
             oneLineChart = false,
