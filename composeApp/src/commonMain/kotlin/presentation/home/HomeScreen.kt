@@ -67,7 +67,7 @@ fun HomeScreen(
         is Resources.ERROR -> {}
 
         is Resources.LOADING -> {
-            LoadingDialog()
+//            LoadingDialog()
         }
 
         is Resources.SUCCESS -> {
@@ -98,6 +98,7 @@ fun HomeScreen(
             )
         }
     ) { paddingValues ->
+
         Column(
             modifier = modifier.fillMaxWidth()
                 .background(MaterialTheme.colorScheme.background)
@@ -119,7 +120,7 @@ fun HomeScreen(
 
             listingData?.data?.let { dataList ->
                 LazyColumn(
-                    modifier = Modifier.weight(9f),
+                    modifier = Modifier.weight(9f).background(MaterialTheme.colorScheme.background),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(dataList) {data ->

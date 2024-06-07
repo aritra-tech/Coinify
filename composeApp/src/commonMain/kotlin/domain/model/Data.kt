@@ -9,7 +9,7 @@ data class Data(
     @SerialName("name") val name: String,
     @SerialName("symbol") val symbol: String? = null,
     @SerialName("slug") val slug: String? = null,
-    @SerialName("cmc_rank") val cmcRank: Double? = null,
+    @SerialName("cmc_rank") val cmcRank: Int? = null,
     @SerialName("num_market_pairs") val numMarketPairs: Int? = null,
     @SerialName("circulating_supply") val circulatingSupply: Double? = null,
     @SerialName("total_supply") val totalSupply: Double? = null,
