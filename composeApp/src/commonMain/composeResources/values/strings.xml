@@ -6,4 +6,6 @@
     <string name="volume_24h">Volume 24h</string>
     <string name="max_supply">Max Supply</string>
     <string name="total_supply">Total Supply</string>
+    <string name="theme">Theme</string>
+    <string name="invite_others">Invite others</string>
 </resources>

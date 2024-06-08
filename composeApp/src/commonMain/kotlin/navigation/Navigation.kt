@@ -29,6 +29,7 @@ import kotlinx.serialization.json.Json
 import presentation.DetailsScreen
 import presentation.HomeScreen
 import presentation.NewsScreen
+import presentation.SettingsScreen
 import ui.backgroundLight
 import ui.onPrimaryContainerLight
 import ui.onSurfaceVariantLight
@@ -75,8 +76,8 @@ fun Navigation() {
                     }
                 }
 
-                composable(route = Screens.News.route) {
-                    NewsScreen()
+                composable(route = Screens.Settings.route) {
+                    SettingsScreen()
                 }
             }
         }
