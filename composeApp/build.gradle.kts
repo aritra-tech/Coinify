@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
@@ -5,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -136,5 +139,18 @@ compose.desktop {
             packageName = "com.aritra.coinify"
             packageVersion = "1.0.0"
         }
+    }
+}
+
+buildkonfig {
+    packageName = "com.aritra.coinify"
+
+    defaultConfigs {
+        val apiKey: String = gradleLocalProperties(rootDir).getProperty("API_KEY")
+
+        require(apiKey.isNotEmpty()) {
+            "Register your api key from developer and place it in local.properties as `API_KEY`"
+        }
+        buildConfigField(FieldSpec.Type.STRING, "API_KEY", apiKey)
     }
 }
