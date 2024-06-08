@@ -118,7 +118,7 @@ fun DetailsScreen(data: Data) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -135,14 +135,28 @@ fun DetailsScreen(data: Data) {
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                Text(
-                    text = "${formatData(capMarketChanged24h)}% (1d)",
-                    style = TextStyle(
-                        color = textColor24h,
-                        fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
+                Column {
+                    Text(
+                        text = "#${data.cmcRank}",
+                        style = TextStyle(
+                            color = MaterialTheme.colorScheme.onSurface,
+                            fontSize = 30.sp,
+                            fontFamily = FontFamily(Font(Res.font.poppins_medium))
+                        )
                     )
-                )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = "${formatData(capMarketChanged24h)}% (1d)",
+                        style = TextStyle(
+                            color = textColor24h,
+                            fontSize = 12.sp,
+                            fontFamily = FontFamily(Font(Res.font.poppins_medium))
+                        )
+                    )
+                }
+
             }
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -166,7 +180,10 @@ fun DetailsScreen(data: Data) {
                     Tab(
                         selected = selectedDuration == period,
                         onClick = { selectedDuration = period },
-                        text = { Text(text = period) }
+                        text = { Text(
+                            text = period,
+                            color = MaterialTheme.colorScheme.onSurface
+                        ) }
                     )
                 }
             }
@@ -199,8 +216,8 @@ fun DetailsScreen(data: Data) {
                 text = stringResource(Res.string.statistics),
                 style = TextStyle(
                     color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 18.sp,
-                    fontFamily = FontFamily(Font(Res.font.poppins_extrabold))
+                    fontSize = 22.sp,
+                    fontFamily = FontFamily(Font(Res.font.poppins_medium))
                 )
             )
 

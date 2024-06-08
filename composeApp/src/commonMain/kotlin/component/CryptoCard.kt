@@ -64,14 +64,9 @@ fun CryptoCard(
     Column(
         modifier = Modifier.fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .clickable { onClick(jsonData) }
-            .border(width = 1.dp, color = Color(0xFFEEEEEE), RoundedCornerShape(10.dp))
-            .shadow(
-                elevation = 4.dp,
-                spotColor = Color(0x0D666666),
-                ambientColor = Color(0x0D666666)
-            )
+//            .border(width = 1.dp, color = Color(0xFFEEEEEE), RoundedCornerShape(10.dp))
             .padding(16.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
