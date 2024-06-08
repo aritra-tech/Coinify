@@ -17,11 +17,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -31,19 +32,39 @@ import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.invite_others
 import coinify.composeapp.generated.resources.theme
 import component.SettingItem
-import navigation.LocalNavHost
+import component.Theme
+import component.ThemeSelectionDialog
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 import utils.Constants.APP_REPO
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    settingsViewModel: SettingsViewModel = koinInject()
 ) {
 
     val uriHandler = LocalUriHandler.current
-    val showThemeDialog by remember { mutableStateOf(false) }
+    var showThemeDialog by remember { mutableStateOf(false) }
+    val isDarkModeEnabled by settingsViewModel.isDarkModeEnabled.collectAsState()
 
+    when {
+
+        showThemeDialog -> {
+            ThemeSelectionDialog(
+                onThemeChange = { theme ->
+                    when (theme) {
+                        Theme.Light -> settingsViewModel.changeDarkMode(false)
+                        Theme.Dark -> settingsViewModel.changeDarkMode(true)
+                    }
+                    showThemeDialog = false
+                },
+                onDismissRequest = { showThemeDialog = false },
+                currentTheme = if (isDarkModeEnabled) Theme.Dark else Theme.Light
+            )
+        }
+    }
 
     Scaffold(
         topBar = {
