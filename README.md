@@ -1,3 +1,8 @@
+<div align="center">
+</br>
+<img src="https://github.com/aritra-tech/Coinify/assets/80090908/10da8b04-63b5-4fcf-ae84-819505dd0713" width="200" height="200" />
+</div>
+
 # Coinify
 
 [![Build](https://github.com/aritra-tech/Coinify/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/aritra-tech/Coinify/actions/workflows/build.yml)
@@ -17,6 +22,10 @@ Coinify is a multiplatform app built by using Kotlin and Compose Multiplatform t
 - [Kermit](https://github.com/touchlab/Kermit)
 - [AAY-chart](https://github.com/TheChance101/AAY-chart)
 - [BuildKonfig](https://github.com/yshrsmz/BuildKonfig)
+
+## Recording:
+
+https://github.com/aritra-tech/Coinify/assets/80090908/41bb2392-f8e0-43c0-869b-8924c82c6a81
 
 ## Development 🛠️
 
