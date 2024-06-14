@@ -137,7 +137,17 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.aritra.coinify"
-            packageVersion = "1.0.0"
+            packageVersion = properties["version.name"].toString()
+
+            macOS {
+                iconFile.set(rootProject.file("icons/coinify_logo.icns"))
+            }
+            windows {
+                iconFile.set(rootProject.file("icons/coinify_logo.ico"))
+            }
+            linux {
+                iconFile.set(rootProject.file("icons/coinify_logo.png"))
+            }
         }
     }
 }
