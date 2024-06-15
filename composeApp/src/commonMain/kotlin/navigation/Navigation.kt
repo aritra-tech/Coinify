@@ -2,15 +2,15 @@ package navigation
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Scaffold
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
@@ -28,11 +28,11 @@ import domain.model.Data
 import kotlinx.serialization.json.Json
 import presentation.DetailsScreen
 import presentation.HomeScreen
-import presentation.NewsScreen
 import presentation.SettingsScreen
 import ui.backgroundLight
 import ui.onPrimaryContainerLight
 import ui.onSurfaceVariantLight
+import ui.primaryDark
 
 val LocalNavHost = staticCompositionLocalOf<NavHostController> {
     error("No Parameter is available")
@@ -90,48 +90,59 @@ fun BottomNavigationBar(
     backStackEntry: State<NavBackStackEntry?>,
     screensWithoutNavigationBar: MutableList<String>
 ) {
-    val items = listOf(
-        BottomNavScreens.Home,
-        BottomNavScreens.News
-    )
 
     if (backStackEntry.value?.destination?.route !in screensWithoutNavigationBar) {
-        BottomAppBar(
+        NavigationBar(
             containerColor = backgroundLight
         ) {
-            val currentBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentDestination = currentBackStackEntry?.destination
+            val items = listOf(
+                BottomNavScreens.Home,
+                BottomNavScreens.News
+            )
+            val currentDestination = navController.currentBackStackEntry?.destination?.route
 
             items.forEach { screen ->
-                BottomNavigationItem(
+                NavigationBarItem(
+                    alwaysShowLabel = true,
                     icon = {
                         Icon(
                             imageVector = screen.icon,
                             contentDescription = screen.title,
-                            tint = if (backStackEntry.value?.destination?.route == screen.route) onPrimaryContainerLight else onSurfaceVariantLight
+                            tint = if (backStackEntry.value?.destination?.route == screen.route)
+                                onPrimaryContainerLight
+                            else
+                                onSurfaceVariantLight
                         )
                     },
                     label = {
                         Text(
                             text = screen.title,
-                            color = if (backStackEntry.value?.destination?.route == screen.route) onPrimaryContainerLight else onSurfaceVariantLight,
+                            color = if (backStackEntry.value?.destination?.route == screen.route)
+                                onPrimaryContainerLight
+                            else
+                                onSurfaceVariantLight,
                             fontFamily = FontFamily(org.jetbrains.compose.resources.Font(Res.font.poppins_regular)),
                             fontWeight = if (backStackEntry.value?.destination?.route == screen.route)
-                                FontWeight.SemiBold
+                                FontWeight.Medium
                             else
                                 FontWeight.Normal,
                         )
                     },
-                    selected = currentDestination?.route == screen.route,
+                    selected = backStackEntry.value?.destination?.route == screen.route,
                     onClick = {
-                        navController.navigate(screen.route) {
-                            popUpTo(navController.graph.startDestinationRoute.toString()) {
-                                saveState = true
+                        if (screen.route != currentDestination) {
+                            navController.navigate(screen.route) {
+                                popUpTo(navController.graph.startDestinationRoute.toString()) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
                             }
-                            launchSingleTop = true
-                            restoreState = true
                         }
-                    }
+                    },
+                    colors = NavigationBarItemDefaults.colors(
+                        indicatorColor = primaryDark
+                    )
                 )
             }
         }
