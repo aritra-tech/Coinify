@@ -1,7 +1,5 @@
 package navigation
 
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
@@ -103,6 +101,7 @@ fun BottomNavigationBar(
         ) {
             val items = listOf(
                 BottomNavScreens.Home,
+                BottomNavScreens.Statistics,
                 BottomNavScreens.News
             )
             val currentDestination = navController.currentBackStackEntry?.destination?.route
