@@ -1,5 +1,7 @@
 package navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
@@ -33,6 +35,8 @@ import ui.backgroundLight
 import ui.onPrimaryContainerLight
 import ui.onSurfaceVariantLight
 import ui.primaryDark
+import utils.FadeIn
+import utils.FadeOut
 
 val LocalNavHost = staticCompositionLocalOf<NavHostController> {
     error("No Parameter is available")
@@ -62,6 +66,8 @@ fun Navigation() {
                 modifier = Modifier.fillMaxWidth(),
                 navController = navController,
                 startDestination = Screens.Home.route,
+                enterTransition = { FadeIn },
+                exitTransition = { FadeOut }
             ) {
 
                 composable(route = Screens.Home.route) {
