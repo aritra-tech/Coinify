@@ -13,7 +13,7 @@ class SettingsViewModel(
     private val appPreferences: AppPreferences
 ): ViewModel() {
 
-    private val _isDarkModeEnabled = MutableStateFlow<Boolean>(false)
+    private val _isDarkModeEnabled = MutableStateFlow(false)
     val isDarkModeEnabled = _isDarkModeEnabled.asStateFlow()
 
     init {

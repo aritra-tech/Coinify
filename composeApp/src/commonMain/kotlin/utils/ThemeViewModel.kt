@@ -13,7 +13,7 @@ class ThemeViewModel(
     private val applicationPreferences: AppPreferences
 ): ViewModel() {
 
-    private val _currentTheme = MutableStateFlow<Boolean>(false)
+    private val _currentTheme = MutableStateFlow(false)
     val currentTheme = _currentTheme.asStateFlow()
 
     init {
