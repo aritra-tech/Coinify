@@ -42,6 +42,7 @@ kotlin {
             implementation(libs.koin.annotation)
             implementation(libs.ktor.client.android)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.androidx.startup.runtime)
 
         }
         commonMain.dependencies {

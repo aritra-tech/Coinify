@@ -97,7 +97,9 @@ fun SettingsScreen(
 
                 item {
                     SettingItem(
-                        onClick = {},
+                        onClick = {
+                            showThemeDialog = true
+                        },
                         imageVector = if (isSystemInDarkTheme()) Icons.Outlined.DarkMode else Icons.Outlined.LightMode,
                         itemName = stringResource(Res.string.theme)
                     )
