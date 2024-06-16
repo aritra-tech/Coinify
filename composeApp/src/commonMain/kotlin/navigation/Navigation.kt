@@ -29,6 +29,7 @@ import kotlinx.serialization.json.Json
 import presentation.DetailsScreen
 import presentation.HomeScreen
 import presentation.SettingsScreen
+import presentation.StatisticsScreen
 import ui.backgroundLight
 import ui.onPrimaryContainerLight
 import ui.onSurfaceVariantLight
@@ -82,6 +83,10 @@ fun Navigation() {
 
                 composable(route = Screens.Settings.route) {
                     SettingsScreen()
+                }
+
+                composable(route = Screens.Statistics.route) {
+                    StatisticsScreen()
                 }
             }
         }
