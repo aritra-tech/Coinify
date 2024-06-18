@@ -1,7 +1,9 @@
 package presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +21,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.Card
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -58,9 +62,7 @@ fun StatisticsScreen(
     when(latestListingState) {
         is Resources.ERROR -> {}
 
-        is Resources.LOADING -> {
-            LoadingDialog()
-        }
+        is Resources.LOADING -> {}
 
         is Resources.SUCCESS -> {
             val response = (latestListingState as Resources.SUCCESS).response
@@ -97,6 +99,81 @@ fun StatisticsScreen(
                     items(list) { data ->
                         TopMovers(data)
                     }
+                }
+            }
+
+            Text(
+                text = "Crypto Trends",
+                fontSize = 20.sp,
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                val randomCurrency = data?.data?.random()
+                randomCurrency?.let { data ->
+                    val textColor =
+                        if (data.quote.USD.percentChange24h > 0) Color.Green else Color.Red
+
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Top
+                    ) {
+                        Text(
+                            text = "${data.name} (${data.symbol})",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "$${((data.quote.USD.price?.times(100))?.roundToInt() ?: 0) / 100.0}",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                text = if (data.quote.USD.percentChange24h > 0) "▲" else "▼",
+                                fontSize = 20.sp,
+                                color = textColor,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = "${data.quote.USD.percentChange24h.roundToInt()}% in 24h",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = textColor
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        HorizontalDivider(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(1.dp)
+                                .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f))
+                        )
+                    }
+                } ?: run {
+                    Text(
+                        text = "No data available",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                    )
                 }
             }
         }
