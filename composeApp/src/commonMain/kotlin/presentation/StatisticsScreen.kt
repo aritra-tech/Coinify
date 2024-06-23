@@ -41,6 +41,7 @@ import coinify.composeapp.generated.resources.poppins_medium
 import coinify.composeapp.generated.resources.poppins_regular
 import coinify.composeapp.generated.resources.top_losing
 import coinify.composeapp.generated.resources.top_movers
+import component.LoadingDialog
 import data.remote.Resources
 import domain.model.Data
 import domain.model.Listings
@@ -63,7 +64,9 @@ fun StatisticsScreen(
     when (latestListingState) {
         is Resources.ERROR -> {}
 
-        is Resources.LOADING -> {}
+        is Resources.LOADING -> {
+            LoadingDialog()
+        }
 
         is Resources.SUCCESS -> {
             val response = (latestListingState as Resources.SUCCESS).response
@@ -157,7 +160,7 @@ fun StatsCard(data: Data) {
 
     Column(
         modifier = Modifier
-            .width(180.dp)
+            .width(200.dp)
             .height(130.dp)
             .clip(RoundedCornerShape(10.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer)
@@ -170,23 +173,37 @@ fun StatsCard(data: Data) {
         Column(
             horizontalAlignment = Alignment.Start
         ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = data.name,
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 18.sp,
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
+                    )
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = "$ ${
+                        ((data.quote.USD.price?.times(100))?.roundToInt())?.div(
+                            100.0
+                        )
+                    }",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 18.sp,
+                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
+                    )
+                )
+            }
+
             Text(
                 text = "${data.symbol}",
-                style = TextStyle(
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 20.sp,
-                    fontFamily = FontFamily(Font(Res.font.poppins_regular))
-                )
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = "$ ${
-                    ((data.quote.USD.price?.times(100))?.roundToInt())?.div(
-                        100.0
-                    )
-                }",
                 style = TextStyle(
                     color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 16.sp,
