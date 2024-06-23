@@ -1,9 +1,7 @@
 package presentation
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,13 +13,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowUpward
-import androidx.compose.material3.Card
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -36,22 +30,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_medium
 import coinify.composeapp.generated.resources.poppins_regular
-import component.LoadingDialog
+import coinify.composeapp.generated.resources.top_losing
+import coinify.composeapp.generated.resources.top_movers
 import data.remote.Resources
 import domain.model.Data
 import domain.model.Listings
 import org.jetbrains.compose.resources.Font
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import kotlin.math.roundToInt
 
@@ -78,22 +72,26 @@ fun StatisticsScreen(
     }
 
     Scaffold(
-        modifier = modifier.fillMaxWidth()
+        topBar = {}
     ) { paddingValues ->
 
         Column(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier = modifier
+                .fillMaxWidth()
                 .padding(paddingValues)
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 16.dp),
             horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Top Movers",
-                fontSize = 20.sp,
-                textAlign = TextAlign.Start
+                text = stringResource(Res.string.top_movers),
+                style = TextStyle(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily(Font(Res.font.poppins_medium))
+                ),
+                textAlign = TextAlign.Start,
             )
 
             Spacer(modifier = Modifier.height(15.dp))
@@ -109,7 +107,7 @@ fun StatisticsScreen(
 
                 topMovers?.let { list ->
                     items(list) { data ->
-                        TopMovers(data)
+                        StatsCard(data)
                     }
                 }
             }
@@ -117,18 +115,38 @@ fun StatisticsScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = "Crypto Trends",
-                fontSize = 20.sp,
-                textAlign = TextAlign.Start
+                text = stringResource(Res.string.top_losing),
+                style = TextStyle(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily(Font(Res.font.poppins_medium))
+                ),
+                textAlign = TextAlign.Start,
             )
+
             Spacer(modifier = Modifier.height(15.dp))
+
+            LazyRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                val losingData = data?.data
+                    ?.filter { it.quote.USD.percentChange24h < 0 }
+                    ?.sortedBy { it.quote.USD.percentChange24h }
+                losingData?.let { list ->
+                    items(list) { data ->
+                        StatsCard(data)
+                    }
+                }
+            }
 
         }
     }
 }
 
 @Composable
-fun TopMovers(data: Data) {
+fun StatsCard(data: Data) {
 
     val percentage24h = data.quote.USD.percentChange24h
     val textColor24h = if (percentage24h > 0) {
@@ -140,7 +158,7 @@ fun TopMovers(data: Data) {
     Column(
         modifier = Modifier
             .width(180.dp)
-            .height(140.dp)
+            .height(130.dp)
             .clip(RoundedCornerShape(10.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .fillMaxSize()
@@ -164,7 +182,7 @@ fun TopMovers(data: Data) {
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = "${
+                text = "$ ${
                     ((data.quote.USD.price?.times(100))?.roundToInt())?.div(
                         100.0
                     )
