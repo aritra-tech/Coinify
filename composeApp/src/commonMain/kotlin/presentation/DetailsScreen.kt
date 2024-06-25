@@ -75,9 +75,7 @@ fun DetailsScreen(data: Data) {
         topBar = {
             TopAppBar(
                 title = { Text(
-                    text = data.name,
-                    fontSize = 18.sp,
-                    fontFamily = FontFamily(Font(Res.font.poppins_bold))
+                    text = "",
                 ) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 navigationIcon = {
@@ -100,7 +98,7 @@ fun DetailsScreen(data: Data) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 AsyncImage(
-                    modifier = Modifier.size(36.dp),
+                    modifier = Modifier.size(40.dp),
                     model = "https://s2.coinmarketcap.com/static/img/coins/64x64/${data.id}.png",
                     contentDescription = null,
                     contentScale = ContentScale.Fit
@@ -108,14 +106,29 @@ fun DetailsScreen(data: Data) {
 
                 Spacer(modifier = Modifier.width(10.dp))
 
-                Text(
-                    text = data.symbol ?: "",
-                    style = TextStyle(
-                        color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 14.sp,
-                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
+                Column {
+
+                    Text(
+                        text = data.name,
+                        style = TextStyle(
+                            color = MaterialTheme.colorScheme.onSurface,
+                            fontSize = 18.sp,
+                            fontFamily = FontFamily(Font(Res.font.poppins_bold))
+                        )
                     )
-                )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = data.symbol ?: "",
+                        style = TextStyle(
+                            color = MaterialTheme.colorScheme.onSurface,
+                            fontSize = 14.sp,
+                            fontFamily = FontFamily(Font(Res.font.poppins_regular))
+                        )
+                    )
+                }
+
             }
 
             Spacer(modifier = Modifier.height(10.dp))
