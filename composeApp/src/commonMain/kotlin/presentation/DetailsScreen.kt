@@ -112,7 +112,7 @@ fun DetailsScreen(data: Data) {
                         text = data.name,
                         style = TextStyle(
                             color = MaterialTheme.colorScheme.onSurface,
-                            fontSize = 18.sp,
+                            fontSize = 20.sp,
                             fontFamily = FontFamily(Font(Res.font.poppins_bold))
                         )
                     )
@@ -141,8 +141,8 @@ fun DetailsScreen(data: Data) {
                     text = "$" + "${((data.quote.USD.price?.times(100))?.roundToInt())?.div(100.0)}",
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 24.sp,
-                        fontFamily = FontFamily(Font(Res.font.poppins_extrabold))
+                        fontSize = 28.sp,
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
 
