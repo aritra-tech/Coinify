@@ -18,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coinify.composeapp.generated.resources.Res
+import coinify.composeapp.generated.resources.loading
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,7 +41,7 @@ fun LoadingDialog() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "Loading",
+                    text = stringResource(Res.string.loading),
                     style = TextStyle(color = MaterialTheme.colorScheme.onSecondaryContainer, fontSize = 20.sp)
                 )
                 Spacer(modifier = Modifier.padding(12.dp))

@@ -8,4 +8,8 @@
     <string name="total_supply">Total Supply</string>
     <string name="theme">Theme</string>
     <string name="invite_others">Invite others</string>
+    <string name="top_movers">Top Movers</string>
+    <string name="top_losing">Top Losing</string>
+    <string name="search_for_coins">Search for coins</string>
+    <string name="loading">Loading...</string>
 </resources>
