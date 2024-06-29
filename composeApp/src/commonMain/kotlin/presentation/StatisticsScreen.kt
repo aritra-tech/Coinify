@@ -54,9 +54,7 @@ fun StatisticsScreen(
     when (latestListingState) {
         is Resources.ERROR -> {}
 
-        is Resources.LOADING -> {
-            LoadingDialog()
-        }
+        is Resources.LOADING -> {}
 
         is Resources.SUCCESS -> {
             val response = (latestListingState as Resources.SUCCESS).response
