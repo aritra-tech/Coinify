@@ -1,6 +1,7 @@
 package presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,6 +46,10 @@ import component.LoadingDialog
 import data.remote.Resources
 import domain.model.Data
 import domain.model.Listings
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import navigation.LocalNavHost
+import navigation.Screens
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
@@ -55,6 +60,7 @@ fun StatisticsScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinInject()
 ) {
+    val navController = LocalNavHost.current
     var data by remember { mutableStateOf<Listings?>(null) }
     LaunchedEffect(Unit) {
         viewModel.getLatestListing()
@@ -110,7 +116,9 @@ fun StatisticsScreen(
 
                 topMovers?.let { list ->
                     items(list) { data ->
-                        StatsCard(data)
+                        StatsCard(data) {
+                            navController.navigate("${Screens.Details.route}/$it")
+                        }
                     }
                 }
             }
@@ -139,7 +147,9 @@ fun StatisticsScreen(
                     ?.sortedBy { it.quote.USD.percentChange24h }
                 losingData?.let { list ->
                     items(list) { data ->
-                        StatsCard(data)
+                        StatsCard(data) {
+                            navController.navigate("${Screens.Details.route}/$it")
+                        }
                     }
                 }
             }
@@ -149,8 +159,12 @@ fun StatisticsScreen(
 }
 
 @Composable
-fun StatsCard(data: Data) {
+fun StatsCard(
+    data: Data,
+    onClick: (String) -> Unit
+) {
 
+    val encodedData = Json.encodeToString(data)
     val percentage24h = data.quote.USD.percentChange24h
     val textColor24h = if (percentage24h > 0) {
         Color.Green
@@ -165,7 +179,10 @@ fun StatsCard(data: Data) {
             .clip(RoundedCornerShape(10.dp))
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .clickable {
+                onClick(encodedData)
+            },
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -182,7 +199,7 @@ fun StatsCard(data: Data) {
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 18.sp,
-                        fontFamily = FontFamily(Font(Res.font.poppins_regular))
+                        fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
 
