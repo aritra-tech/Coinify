@@ -29,7 +29,6 @@ import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_medium
 import coinify.composeapp.generated.resources.top_losing
 import coinify.composeapp.generated.resources.top_movers
-import component.LoadingDialog
 import component.StatsCard
 import data.remote.Resources
 import domain.model.Listings

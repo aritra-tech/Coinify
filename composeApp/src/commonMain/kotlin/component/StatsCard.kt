@@ -52,7 +52,7 @@ fun StatsCard(
             .clickable { onClick(encodedData) }
             .padding(16.dp),
         horizontalAlignment = Alignment.Start,
-        verticalArrangement =Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
 
         Column(
@@ -64,14 +64,13 @@ fun StatsCard(
             ) {
                 Text(
                     text = data.name,
-                    style = MaterialTheme.typography.bodyMedium.copy( // Use MaterialTheme typography styles
+                    style = MaterialTheme.typography.bodyMedium.copy(
                         fontFamily = FontFamily(Font(Res.font.poppins_medium))
                     )
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                // Simplify price formatting
                 val formattedPrice = data.quote.USD.price?.times(100)?.roundToInt()?.div(100.0)
                 Text(
                     text = "$ $formattedPrice",
@@ -85,7 +84,8 @@ fun StatsCard(
                 text = "${data.symbol}",
                 style = MaterialTheme.typography.bodySmall.copy(
                     fontFamily = FontFamily(Font(Res.font.poppins_regular))
-                ))
+                )
+            )
         }
 
         Row(

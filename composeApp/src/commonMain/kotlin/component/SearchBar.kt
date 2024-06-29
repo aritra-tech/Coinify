@@ -22,6 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
+import coinify.composeapp.generated.resources.Res
+import coinify.composeapp.generated.resources.search_for_coins
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SearchBar(
@@ -80,7 +83,7 @@ fun SearchBar(
             ),
             placeholder = {
                 Text(
-                    text = "Search Coins",
+                    text = stringResource(Res.string.search_for_coins),
                     style = TextStyle(color = MaterialTheme.colorScheme.onSecondaryContainer)
                 )
             }
