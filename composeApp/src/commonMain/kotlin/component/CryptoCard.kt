@@ -12,8 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowDropDown
-import androidx.compose.material.icons.rounded.ArrowDropUp
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -48,9 +48,9 @@ fun CryptoCard(
     val textColor24h = if (percentChange24h > 0) Color.Green else Color.Red
     val jsonData = Json.encodeToString(data)
     val icon = if (percentChange24h > 0) {
-        Icons.Rounded.ArrowDropUp
-    } else{
-        Icons.Rounded.ArrowDropDown
+        Icons.Default.ArrowUpward
+    } else {
+        Icons.Default.ArrowDownward
     }
 
     val iconColor = if (percentChange24h > 0) {
