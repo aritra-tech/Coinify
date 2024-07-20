@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -101,9 +102,7 @@ fun BottomNavigationBar(
 ) {
 
     if (backStackEntry.value?.destination?.route !in screensWithoutNavigationBar) {
-        NavigationBar(
-            containerColor = backgroundLight
-        ) {
+        NavigationBar {
             val items = listOf(
                 BottomNavScreens.Home,
                 BottomNavScreens.Statistics,

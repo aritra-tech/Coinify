@@ -77,6 +77,7 @@ fun StatisticsScreen(
         Column(
             modifier = modifier
                 .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background)
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
                 .padding(bottom = 16.dp),
