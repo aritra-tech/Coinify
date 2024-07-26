@@ -1,4 +1,4 @@
-package presentation
+package presentation.stats
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -45,6 +45,7 @@ import navigation.Screens
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import presentation.home.HomeViewModel
 import kotlin.math.roundToInt
 
 @Composable

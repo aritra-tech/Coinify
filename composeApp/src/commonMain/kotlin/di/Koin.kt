@@ -2,8 +2,8 @@ package di
 
 import domain.repository.ListingRepository
 import org.koin.dsl.module
-import presentation.HomeViewModel
-import presentation.SettingsViewModel
+import presentation.home.HomeViewModel
+import presentation.settings.SettingsViewModel
 import utils.ThemeViewModel
 import utils.coreComponent
 import utils.viewModelDefinition

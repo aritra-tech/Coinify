@@ -1,4 +1,4 @@
-package presentation
+package presentation.settings
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme

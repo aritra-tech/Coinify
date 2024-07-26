@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -27,11 +26,10 @@ import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_regular
 import domain.model.Data
 import kotlinx.serialization.json.Json
-import presentation.DetailsScreen
-import presentation.HomeScreen
-import presentation.SettingsScreen
-import presentation.StatisticsScreen
-import ui.backgroundLight
+import presentation.details.DetailsScreen
+import presentation.home.HomeScreen
+import presentation.settings.SettingsScreen
+import presentation.stats.StatisticsScreen
 import ui.onPrimaryContainerLight
 import ui.onSurfaceVariantLight
 import ui.primaryDark

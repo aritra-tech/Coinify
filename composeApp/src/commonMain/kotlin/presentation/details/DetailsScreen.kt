@@ -1,4 +1,4 @@
-package presentation
+package presentation.details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -47,7 +47,6 @@ import coinify.composeapp.generated.resources.current_price
 import coinify.composeapp.generated.resources.market_cap
 import coinify.composeapp.generated.resources.max_supply
 import coinify.composeapp.generated.resources.poppins_bold
-import coinify.composeapp.generated.resources.poppins_extrabold
 import coinify.composeapp.generated.resources.poppins_medium
 import coinify.composeapp.generated.resources.poppins_regular
 import coinify.composeapp.generated.resources.statistics
