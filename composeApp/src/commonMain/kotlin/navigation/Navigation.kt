@@ -26,11 +26,10 @@ import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_regular
 import domain.model.Data
 import kotlinx.serialization.json.Json
-import presentation.DetailsScreen
-import presentation.HomeScreen
-import presentation.SettingsScreen
-import presentation.StatisticsScreen
-import ui.backgroundLight
+import presentation.details.DetailsScreen
+import presentation.home.HomeScreen
+import presentation.settings.SettingsScreen
+import presentation.stats.StatisticsScreen
 import ui.onPrimaryContainerLight
 import ui.onSurfaceVariantLight
 import ui.primaryDark
@@ -101,9 +100,7 @@ fun BottomNavigationBar(
 ) {
 
     if (backStackEntry.value?.destination?.route !in screensWithoutNavigationBar) {
-        NavigationBar(
-            containerColor = backgroundLight
-        ) {
+        NavigationBar {
             val items = listOf(
                 BottomNavScreens.Home,
                 BottomNavScreens.Statistics,

@@ -43,6 +43,7 @@ kotlin {
             implementation(libs.ktor.client.android)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.androidx.startup.runtime)
+            implementation(libs.core.splashscreen)
 
         }
         commonMain.dependencies {
