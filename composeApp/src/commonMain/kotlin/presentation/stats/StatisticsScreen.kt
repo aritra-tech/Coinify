@@ -63,7 +63,9 @@ fun StatisticsScreen(
     when (latestListingState) {
         is Resources.ERROR -> {}
 
-        is Resources.LOADING -> {}
+        is Resources.LOADING -> {
+            StatisticsShimmerEffect()
+        }
 
         is Resources.SUCCESS -> {
             val response = (latestListingState as Resources.SUCCESS).response
