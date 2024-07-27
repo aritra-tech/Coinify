@@ -1,12 +1,15 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.config.JvmTarget
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
@@ -143,7 +146,12 @@ room {
 }
 
 dependencies {
-    ksp(libs.androidx.room.compiler)
+    add("kspAndroid", libs.androidx.room.compiler)
+    afterEvaluate {
+        add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+        add("kspIosX64", libs.androidx.room.compiler)
+        add("kspIosArm64", libs.androidx.room.compiler)
+    }
 }
 
 compose.desktop {

@@ -20,7 +20,7 @@ androidx-test-junit = "1.1.5"
 compose = "1.6.8"
 compose-plugin = "1.6.10"
 junit = "4.13.2"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 kermit = "2.0.3"
 ktor = "2.3.2"
 ktorClientAndroid = "2.3.5"
@@ -92,6 +92,7 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "androidx-room" }
