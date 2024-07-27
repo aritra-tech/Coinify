@@ -17,6 +17,8 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -82,6 +84,17 @@ fun DetailsScreen(data: Data) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back button")
                     }
                 },
+                actions = {
+                    IconButton(onClick = {
+
+                    }) {
+//                        Icon(
+//                            if () Icons.Outlined.BookmarkBorder
+//                            else Icons.Default.Bookmark,
+//                            contentDescription = "Back button",
+//                        )
+                    }
+                }
             )
         }
     ) { paddingValues ->

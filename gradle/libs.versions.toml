@@ -34,6 +34,7 @@ core-splashscreen = "1.0.1"
 ksp = "2.0.0-1.0.21"
 sqlite = "2.5.0-SNAPSHOT"
 androidx-room = "2.7.0-alpha04"
+roomCommon = "2.6.1"
 
 [libraries]
 bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
@@ -84,6 +85,7 @@ core-splashscreen = { group = "androidx.core", name = "core-splashscreen", versi
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 
 
 [plugins]

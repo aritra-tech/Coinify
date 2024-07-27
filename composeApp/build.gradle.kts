@@ -146,6 +146,7 @@ room {
 }
 
 dependencies {
+    implementation(libs.androidx.room.common)
     add("kspAndroid", libs.androidx.room.compiler)
     afterEvaluate {
         add("kspIosSimulatorArm64", libs.androidx.room.compiler)
