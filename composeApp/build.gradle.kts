@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.buildkonfig)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -86,6 +88,10 @@ kotlin {
             implementation(libs.coil.mp)
             implementation(libs.coil.network.ktor)
 
+            // Room + Sqlite
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -130,6 +136,14 @@ android {
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.androidx.room.compiler)
 }
 
 compose.desktop {

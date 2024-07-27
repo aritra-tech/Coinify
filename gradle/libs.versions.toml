@@ -31,6 +31,9 @@ coil3 = "3.0.0-alpha06"
 buildkonfig = "0.15.1"
 startupRuntime = "1.1.1"
 core-splashscreen = "1.0.1"
+ksp = "2.0.0-1.0.21"
+sqlite = "2.5.0-SNAPSHOT"
+androidx-room = "2.7.0-alpha04"
 
 [libraries]
 bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
@@ -78,6 +81,10 @@ coil-mp = { module = "io.coil-kt.coil3:coil", version.ref = "coil3" }
 androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
 
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -86,3 +93,5 @@ jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room", version.ref = "androidx-room" }
