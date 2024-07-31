@@ -24,6 +24,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_regular
+import data.database.CoinifyDatabase
 import domain.model.Data
 import kotlinx.serialization.json.Json
 import presentation.details.DetailsScreen
@@ -41,7 +42,7 @@ val LocalNavHost = staticCompositionLocalOf<NavHostController> {
 }
 
 @Composable
-fun Navigation() {
+fun Navigation(database: CoinifyDatabase) {
 
     val navController: NavHostController = rememberNavController()
     val backStackEntry = navController.currentBackStackEntryAsState()
@@ -76,7 +77,7 @@ fun Navigation() {
                     val jsonData = backStackEntry.arguments?.getString("data")
                     val data = jsonData?.let { Json.decodeFromString<Data>(it) }
                     data?.let {
-                        DetailsScreen(it)
+                        DetailsScreen(it, database)
                     }
                 }
 

@@ -55,6 +55,7 @@ import coinify.composeapp.generated.resources.statistics
 import coinify.composeapp.generated.resources.total_supply
 import coinify.composeapp.generated.resources.volume_24h
 import component.CoinChart
+import data.database.CoinifyDatabase
 import domain.model.Data
 import navigation.LocalNavHost
 import org.jetbrains.compose.resources.Font
@@ -64,7 +65,10 @@ import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsScreen(data: Data) {
+fun DetailsScreen(
+    data: Data,
+    database: CoinifyDatabase
+) {
 
     val navController = LocalNavHost.current
     val capMarketChanged24h = data.quote.USD.percentChange24h

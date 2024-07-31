@@ -22,7 +22,9 @@ class CoinifyRepository(
         dao.deleteAllBookmark()
     }
 
-    fun getCoins() = dao.getCoins().flowOn(Dispatchers.IO)
+    fun getCoins() {
+        dao.getCoins()
+    }
 
     suspend fun getCoin(coinId: Int): Data? {
         return dao.getCoin(id = coinId)
