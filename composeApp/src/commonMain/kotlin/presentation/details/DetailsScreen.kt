@@ -53,7 +53,7 @@ import coinify.composeapp.generated.resources.statistics
 import coinify.composeapp.generated.resources.total_supply
 import coinify.composeapp.generated.resources.volume_24h
 import component.CoinChart
-import domain.model.Data
+import domain.model.crypto.Data
 import navigation.LocalNavHost
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource

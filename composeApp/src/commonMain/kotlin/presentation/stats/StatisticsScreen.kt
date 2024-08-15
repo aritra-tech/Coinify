@@ -39,7 +39,7 @@ import coinify.composeapp.generated.resources.top_losing
 import coinify.composeapp.generated.resources.top_movers
 import component.StatsCard
 import data.remote.Resources
-import domain.model.Listings
+import domain.model.crypto.Listings
 import navigation.LocalNavHost
 import navigation.Screens
 import org.jetbrains.compose.resources.Font

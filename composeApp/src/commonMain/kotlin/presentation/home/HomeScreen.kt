@@ -38,7 +38,7 @@ import component.CryptoCard
 import component.LoadingDialog
 import component.SearchBar
 import data.remote.Resources
-import domain.model.Listings
+import domain.model.crypto.Listings
 import navigation.LocalNavHost
 import navigation.Screens
 import org.jetbrains.compose.resources.Font

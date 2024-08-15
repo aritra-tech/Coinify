@@ -3,9 +3,9 @@ package presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import data.remote.Resources
-import domain.model.Data
-import domain.model.Listings
-import domain.repository.ListingRepository
+import domain.model.crypto.Data
+import domain.model.crypto.Listings
+import domain.repository.CoinifyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val repository: ListingRepository
+    private val repository: CoinifyRepository
 ): ViewModel() {
 
     private val _latestListing = MutableStateFlow<Resources<Listings>>(Resources.LOADING)

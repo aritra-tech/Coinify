@@ -24,7 +24,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_regular
-import domain.model.Data
+import domain.model.crypto.Data
 import kotlinx.serialization.json.Json
 import presentation.details.DetailsScreen
 import presentation.home.HomeScreen

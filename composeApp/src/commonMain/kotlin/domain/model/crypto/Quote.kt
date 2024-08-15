@@ -1,4 +1,4 @@
-package domain.model
+package domain.model.crypto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
