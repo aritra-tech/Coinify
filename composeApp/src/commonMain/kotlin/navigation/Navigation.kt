@@ -28,6 +28,7 @@ import domain.model.Data
 import kotlinx.serialization.json.Json
 import presentation.details.DetailsScreen
 import presentation.home.HomeScreen
+import presentation.news.NewsScreen
 import presentation.settings.SettingsScreen
 import presentation.stats.StatisticsScreen
 import ui.onPrimaryContainerLight
@@ -87,6 +88,10 @@ fun Navigation() {
                 composable(route = Screens.Statistics.route) {
                     StatisticsScreen()
                 }
+
+                composable(route = Screens.News.route) {
+                    NewsScreen()
+                }
             }
         }
     }
@@ -104,7 +109,8 @@ fun BottomNavigationBar(
             val items = listOf(
                 BottomNavScreens.Home,
                 BottomNavScreens.Statistics,
-                BottomNavScreens.News
+                BottomNavScreens.News,
+                BottomNavScreens.Settings
             )
             val currentDestination = navController.currentBackStackEntry?.destination?.route
 
