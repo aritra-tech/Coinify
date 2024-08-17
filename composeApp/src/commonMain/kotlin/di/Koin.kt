@@ -1,6 +1,7 @@
 package di
 
 import com.aritra.coinify.BuildKonfig.API_KEY
+import data.remote.ApiClient
 import domain.repository.CoinifyRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
@@ -12,6 +13,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.headers
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 import presentation.home.HomeViewModel
@@ -22,6 +24,7 @@ import utils.ThemeViewModel
 import utils.coreComponent
 import utils.viewModelDefinition
 
+@OptIn(ExperimentalSerializationApi::class)
 val appModule = module {
     single {
         HttpClient {
@@ -43,8 +46,8 @@ val appModule = module {
                         println(message)
                     }
                 }
-                filter { filter-> filter.url.host.contains("coinmarketcap.com") }
-                sanitizeHeader { header-> header == HttpHeaders.Authorization }
+//                filter { filter-> filter.url.host.contains("coinmarketcap.com") }
+//                sanitizeHeader { header-> header == HttpHeaders.Authorization }
             }
             install(HttpTimeout) {
                 requestTimeoutMillis = REQUEST_TIME_OUT
@@ -59,6 +62,7 @@ val appModule = module {
         }
     }
     single { CoinifyRepository(get()) }
+    single { ApiClient(get()) }
     single { coreComponent.appPreferences }
 
     viewModelDefinition { HomeViewModel(get()) }

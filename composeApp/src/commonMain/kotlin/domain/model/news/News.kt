@@ -2,15 +2,20 @@ package domain.model.news
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.company.app.domain.model.news.Data
 
 @Serializable
 data class News (
-
-    @SerialName("Type") var Type: Int? = null,
-    @SerialName("Message") var Message: String? = null,
-    @SerialName("Promoted") var Promoted: List<String> = listOf(),
-    @SerialName("Data") var Data: List<Data> = listOf(),
-    @SerialName("RateLimit") var RateLimit: RateLimit? = RateLimit(),
-    @SerialName("HasWarning") var HasWarning: Boolean? = null
-
+    @SerialName("Data")
+    val `data`: List<Data> = listOf(),
+    @SerialName("HasWarning")
+    val hasWarning: Boolean = false,
+    @SerialName("Message")
+    val message: String = "",
+    @SerialName("Promoted")
+    val promoted: List<String> = listOf(),
+    @SerialName("RateLimit")
+    val rateLimit: RateLimit = RateLimit(),
+    @SerialName("Type")
+    val type: Int = 0
 )

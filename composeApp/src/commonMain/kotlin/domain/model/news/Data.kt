@@ -1,24 +1,38 @@
-package domain.model.news
+package org.company.app.domain.model.news
 
+
+import domain.model.news.SourceInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Data (
-
-    @SerialName("id") var id: String?     = null,
-    @SerialName("guid") var guid: String?     = null,
-    @SerialName("published_on") var publishedOn: Int?        = null,
-    @SerialName("imageurl") var imageurl: String?     = null,
-    @SerialName("title") var title: String?     = null,
-    @SerialName("url") var url: String?     = null,
-    @SerialName("body") var body: String?     = null,
-    @SerialName("tags") var tags: String?     = null,
-    @SerialName("lang") var lang: String?     = null,
-    @SerialName("upvotes") var upvotes: String?     = null,
-    @SerialName("downvotes") var downvotes: String?     = null,
-    @SerialName("categories") var categories: String?     = null,
-    @SerialName("source_info") var sourceInfo: SourceInfo? = SourceInfo(),
-    @SerialName("source") var source: String?     = null
-
+data class Data(
+    @SerialName("body")
+    val body: String = "",
+    @SerialName("categories")
+    val categories: String = "",
+    @SerialName("downvotes")
+    val downvotes: String = "",
+    @SerialName("guid")
+    val guid: String = "",
+    @SerialName("id")
+    val id: String = "",
+    @SerialName("imageurl")
+    val imageurl: String = "",
+    @SerialName("lang")
+    val lang: String = "",
+    @SerialName("published_on")
+    val publishedOn: Int = 0,
+    @SerialName("source")
+    val source: String = "",
+    @SerialName("source_info")
+    val sourceInfo: SourceInfo = SourceInfo(),
+    @SerialName("tags")
+    val tags: String = "",
+    @SerialName("title")
+    val title: String = "",
+    @SerialName("upvotes")
+    val upvotes: String = "",
+    @SerialName("url")
+    val url: String = ""
 )

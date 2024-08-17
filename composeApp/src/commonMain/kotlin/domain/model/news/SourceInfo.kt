@@ -5,9 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SourceInfo (
-
-    @SerialName("name" ) var name : String? = null,
-    @SerialName("img"  ) var img  : String? = null,
-    @SerialName("lang" ) var lang : String? = null
-
+    @SerialName("img")
+    val img: String = "",
+    @SerialName("lang")
+    val lang: String = "",
+    @SerialName("name")
+    val name: String = ""
 )

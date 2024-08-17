@@ -61,6 +61,7 @@ kotlin {
             implementation(libs.androidx.data.store.core)
             implementation(libs.kotlin.coroutines)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.datetime)
             implementation(libs.chart)
             implementation(libs.bignum)
 
