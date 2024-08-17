@@ -1,7 +1,6 @@
-package org.company.app.domain.model.news
+package domain.model.news
 
 
-import domain.model.news.SourceInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

@@ -2,7 +2,6 @@ package domain.model.news
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.company.app.domain.model.news.Data
 
 @Serializable
 data class News (

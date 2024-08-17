@@ -1,6 +1,7 @@
 package presentation.news
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import co.touchlab.kermit.Logger
 import coil3.compose.AsyncImage
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_bold
@@ -43,7 +45,11 @@ import coinify.composeapp.generated.resources.poppins_medium
 import coinify.composeapp.generated.resources.poppins_regular
 import data.remote.Resources
 import domain.model.news.News
-import org.company.app.domain.model.news.Data
+import kotlinx.serialization.json.Json
+import navigation.LocalNavHost
+import domain.model.news.Data
+import kotlinx.serialization.encodeToString
+import navigation.Screens
 import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 import utils.formatTimeStamp
@@ -53,6 +59,7 @@ fun NewsScreen(
     modifier: Modifier = Modifier,
     viewModel: NewsViewModel = koinInject()
 ) {
+    val navController = LocalNavHost.current
     var newsList by remember { mutableStateOf<News?>(null) }
     val newsState by viewModel.allNews.collectAsState()
 
@@ -92,8 +99,13 @@ fun NewsScreen(
                     modifier = Modifier.weight(9f).background(MaterialTheme.colorScheme.background),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(news) {
-                        NewsCards(it)
+                    items(news) { newsData ->
+                        NewsCards(
+                            newsData
+                        ) { encodedData ->
+                            Logger.d("Encoded data is: ${encodedData}")
+                            navController.navigate("${Screens.NewsDetails.route}/$encodedData")
+                        }
                     }
                 }
             }
@@ -103,10 +115,16 @@ fun NewsScreen(
 }
 
 @Composable
-fun NewsCards(news: Data) {
+fun NewsCards(
+    news: Data,
+    onClick: (String) -> Unit
+) {
+    val encodedData = remember(news) {Json.encodeToString(news) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick(encodedData) }
             .padding(8.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
