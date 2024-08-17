@@ -32,7 +32,7 @@ import coil3.compose.AsyncImage
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_medium
 import coinify.composeapp.generated.resources.poppins_regular
-import domain.model.Data
+import domain.model.crypto.Data
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.jetbrains.compose.resources.Font

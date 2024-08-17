@@ -18,16 +18,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_regular
-import domain.model.Data
+import domain.model.crypto.Data
 import kotlinx.serialization.json.Json
 import presentation.details.DetailsScreen
 import presentation.home.HomeScreen
+import presentation.news.NewsDetailsScreen
+import presentation.news.NewsScreen
 import presentation.settings.SettingsScreen
 import presentation.stats.StatisticsScreen
 import ui.onPrimaryContainerLight
@@ -46,7 +50,8 @@ fun Navigation() {
     val navController: NavHostController = rememberNavController()
     val backStackEntry = navController.currentBackStackEntryAsState()
     val screensWithoutNavigationBar = mutableListOf(
-        "${Screens.Details.route}/{data}"
+        "${Screens.Details.route}/{data}",
+        "${Screens.NewsDetails.route}/{news}"
     )
 
     CompositionLocalProvider(LocalNavHost provides navController) {
@@ -87,6 +92,21 @@ fun Navigation() {
                 composable(route = Screens.Statistics.route) {
                     StatisticsScreen()
                 }
+
+                composable(route = Screens.News.route) {
+                    NewsScreen()
+                }
+
+                composable(
+                    route = "${Screens.NewsDetails.route}/{news}",
+                    arguments = listOf(navArgument("news") { type = NavType.StringType })
+                ) { backStackEntry ->
+                    val jsonData = backStackEntry.arguments?.getString("news")
+                    val newsData = jsonData?.let { Json.decodeFromString<domain.model.news.Data>(it) }
+                    newsData?.let {
+                        NewsDetailsScreen(it)
+                    }
+                }
             }
         }
     }
@@ -104,7 +124,8 @@ fun BottomNavigationBar(
             val items = listOf(
                 BottomNavScreens.Home,
                 BottomNavScreens.Statistics,
-                BottomNavScreens.News
+                BottomNavScreens.News,
+                BottomNavScreens.Settings
             )
             val currentDestination = navController.currentBackStackEntry?.destination?.route
 
