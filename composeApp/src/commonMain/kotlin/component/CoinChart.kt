@@ -19,7 +19,7 @@ import com.aay.compose.baseComponents.model.LegendPosition
 import com.aay.compose.lineChart.LineChart
 import com.aay.compose.lineChart.model.LineParameters
 import com.aay.compose.lineChart.model.LineType
-import domain.model.Data
+import domain.model.crypto.Data
 import org.jetbrains.compose.resources.Font
 import kotlin.math.abs
 import kotlin.random.Random
