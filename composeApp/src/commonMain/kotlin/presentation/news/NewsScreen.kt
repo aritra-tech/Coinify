@@ -52,6 +52,7 @@ import kotlinx.serialization.encodeToString
 import navigation.Screens
 import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
+import presentation.home.HomeScreenShimmer
 import utils.formatTimeStamp
 
 @Composable
@@ -60,25 +61,11 @@ fun NewsScreen(
     viewModel: NewsViewModel = koinInject()
 ) {
     val navController = LocalNavHost.current
-    var newsList by remember { mutableStateOf<News?>(null) }
     val newsState by viewModel.allNews.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.getAllNews()
-    }
-
-    when(newsState) {
-        is Resources.ERROR -> {
-
-        }
-        is Resources.LOADING -> {
-
-        }
-
-        is Resources.SUCCESS -> {
-            val response = (newsState as Resources.SUCCESS).response
-            newsList = response
-        }
     }
 
     Scaffold(
@@ -86,7 +73,8 @@ fun NewsScreen(
     ) { paddingValues ->
 
         Column(
-            modifier = modifier.fillMaxWidth()
+            modifier = modifier
+                .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.background)
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
@@ -94,25 +82,50 @@ fun NewsScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            newsList?.data?.let { news ->
+            if (isLoading) {
                 LazyColumn(
-                    modifier = Modifier.weight(9f).background(MaterialTheme.colorScheme.background),
+                    modifier = Modifier
+                        .weight(9f)
+                        .background(MaterialTheme.colorScheme.background),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(news) { newsData ->
-                        NewsCards(
-                            newsData
-                        ) { encodedData ->
-                            Logger.d("Encoded data is: ${encodedData}")
-                            navController.navigate("${Screens.NewsDetails.route}/$encodedData")
-                        }
+                    items(10) {
+                        NewsScreenShimmer()
                     }
                 }
-            }
+            } else {
+                when (newsState) {
+                    is Resources.SUCCESS -> {
+                        val newsList = (newsState as Resources.SUCCESS<News>).response.data
+                        LazyColumn(
+                            modifier = Modifier
+                                .weight(9f)
+                                .background(MaterialTheme.colorScheme.background),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            items(newsList) { newsData ->
+                                NewsCards(newsData) { encodedData ->
+                                    Logger.d("Encoded data is: $encodedData")
+                                    navController.navigate("${Screens.NewsDetails.route}/$encodedData")
+                                }
+                            }
+                        }
+                    }
 
+                    is Resources.ERROR -> {
+                        Text(
+                            "Error loading data",
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
+
+                    else -> {}
+                }
+            }
         }
     }
 }
+
 
 @Composable
 fun NewsCards(
