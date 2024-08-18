@@ -35,7 +35,6 @@ import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.coinify
 import coinify.composeapp.generated.resources.poppins_medium
 import component.CryptoCard
-import component.LoadingDialog
 import component.SearchBar
 import data.remote.Resources
 import domain.model.crypto.Listings
@@ -53,24 +52,10 @@ fun HomeScreen(
 ) {
 
     val navController = LocalNavHost.current
-    var listingData by remember { mutableStateOf<Listings?>(null) }
     val latestListingObserver by viewModel.latestListing.collectAsState()
     val searchQueryObserver by viewModel.searchQuery.collectAsState()
     val filteredListingsObserver by viewModel.filteredListing.collectAsState()
-
-    when(latestListingObserver) {
-        is Resources.ERROR -> {}
-
-        is Resources.LOADING -> {
-            LoadingDialog()
-        }
-
-        is Resources.SUCCESS -> {
-            val data = (latestListingObserver as Resources.SUCCESS).response
-            listingData = data
-        }
-
-    }
+    val isLoading by viewModel.isLoading.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.getLatestListing()
@@ -113,18 +98,36 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            filteredListingsObserver.let { dataList ->
+            if (isLoading) {
                 LazyColumn(
                     modifier = Modifier.weight(9f).background(MaterialTheme.colorScheme.background),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(dataList) {data ->
-                        CryptoCard(
-                            data
+                    items(10) {
+                        HomeScreenShimmer()
+                    }
+                }
+            } else {
+                when (latestListingObserver) {
+                    is Resources.SUCCESS -> {
+                        LazyColumn(
+                            modifier = Modifier.weight(9f).background(MaterialTheme.colorScheme.background),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            navController.navigate("${Screens.Details.route}/$it")
+                            items(filteredListingsObserver) { data ->
+                                CryptoCard(
+                                    data
+                                ) {
+                                    navController.navigate("${Screens.Details.route}/$it")
+                                }
+                            }
                         }
                     }
+                    is Resources.ERROR -> {
+                        Text("Error loading data", color = MaterialTheme.colorScheme.error)
+                    }
+
+                    else -> {}
                 }
             }
         }

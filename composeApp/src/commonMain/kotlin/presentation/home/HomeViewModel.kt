@@ -17,6 +17,9 @@ class HomeViewModel(
     private val repository: CoinifyRepository
 ): ViewModel() {
 
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+
     private val _latestListing = MutableStateFlow<Resources<Listings>>(Resources.LOADING)
     var latestListing: StateFlow<Resources<Listings>> = _latestListing.asStateFlow()
 
@@ -28,6 +31,7 @@ class HomeViewModel(
 
     fun getLatestListing() {
         viewModelScope.launch(Dispatchers.IO) {
+            _isLoading.value = true
             _latestListing.value = Resources.LOADING
             try {
                 val response = repository.getListing()
@@ -35,6 +39,8 @@ class HomeViewModel(
                 filterData(response.data, "")
             } catch (e: Exception) {
                 _latestListing.value = Resources.ERROR(e.message.toString())
+            } finally {
+                _isLoading.value = false
             }
         }
     }
