@@ -43,6 +43,7 @@ kotlin {
             implementation(libs.ktor.client.android)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.androidx.startup.runtime)
+            implementation(libs.core.splashscreen)
 
         }
         commonMain.dependencies {
@@ -60,6 +61,7 @@ kotlin {
             implementation(libs.androidx.data.store.core)
             implementation(libs.kotlin.coroutines)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.datetime)
             implementation(libs.chart)
             implementation(libs.bignum)
 

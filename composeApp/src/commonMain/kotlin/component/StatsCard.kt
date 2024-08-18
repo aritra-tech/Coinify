@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -28,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import coinify.composeapp.generated.resources.Res
 import coinify.composeapp.generated.resources.poppins_medium
 import coinify.composeapp.generated.resources.poppins_regular
-import domain.model.Data
+import domain.model.crypto.Data
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.jetbrains.compose.resources.Font
@@ -94,7 +95,7 @@ fun StatsCard(
             horizontalArrangement = Arrangement.End
         ) {
             Icon(
-                imageVector = Icons.Default.ArrowUpward,
+                imageVector = if (percentage24h > 0) Icons.Default.ArrowUpward  else  Icons.Default.ArrowDownward,
                 contentDescription = if (percentage24h > 0) "Gain" else "Loss",
                 tint = textColor24h,
                 modifier = Modifier.size(20.dp)
