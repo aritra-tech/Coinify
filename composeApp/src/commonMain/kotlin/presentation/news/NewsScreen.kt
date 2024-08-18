@@ -190,7 +190,7 @@ fun NewsCards(
                 Spacer(modifier = Modifier.weight(1f))
 
                 Text(
-                    text = " Published: ${formatTimeStamp(news.publishedOn.toLong())}",
+                    text = " Published at: ${formatTimeStamp(news.publishedOn.toLong())}",
                     style = TextStyle(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 12.sp,
