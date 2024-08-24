@@ -32,6 +32,12 @@ buildkonfig = "0.15.1"
 startupRuntime = "1.1.1"
 kotlinx-datetime = "0.6.0"
 core-splashscreen = "1.0.1"
+kotlinVersion = "1.9.0"
+playServicesWearable = "18.2.0"
+composeBom = "2024.04.01"
+composeMaterial = "1.2.1"
+composeFoundation = "1.2.1"
+compose-material3 = "1.0.0-alpha18"
 
 [libraries]
 bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
@@ -48,6 +54,7 @@ androidx-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecy
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+androidx-wear-compose-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "compose-material3" }
 
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 
@@ -70,6 +77,13 @@ coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref
 coil-mp = { module = "io.coil-kt.coil3:coil", version.ref = "coil3" }
 androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
+androidx-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "composeFoundation" }
 
 
 [plugins]
@@ -79,3 +93,4 @@ jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
